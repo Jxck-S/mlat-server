@@ -162,9 +162,11 @@ mlat-server uses asyncio for concurrency. Additional threading from NumPy/SciPy 
 ### Multi-Stage Build
 
 The Dockerfile uses a multi-stage build to:
-1. Minimize final image size (~200MB vs ~1GB)
+1. Minimize final image size (typically ~200-300MB vs ~800MB-1GB single-stage)
 2. Exclude build tools from runtime image
 3. Improve security (fewer packages = smaller attack surface)
+
+**Note:** Actual image sizes vary based on specific dependency versions and platform architecture.
 
 ## Monitoring
 

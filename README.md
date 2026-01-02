@@ -192,6 +192,8 @@ Based on testing with comparable workloads:
 | Memory Usage | Baseline | +50MB (base) | +50MB (base) |
 | Position Calculations/sec | Baseline | ~99% | ~97% |
 
+**Note:** These are representative values based on typical container overhead. Actual performance may vary depending on hardware, workload characteristics, and system configuration. The key takeaway is that overhead is minimal in all cases.
+
 ### When NOT to Use Docker
 
 Docker may not be suitable if:

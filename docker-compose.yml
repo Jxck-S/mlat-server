@@ -29,7 +29,8 @@ services:
       - PYTHONOPTIMIZE=2
     
     # Resource limits for standalone docker-compose
-    # Note: For Docker Swarm, use the deploy section instead
+    # These work in docker-compose v3.x standalone mode
+    # For Docker Swarm mode, use deploy.resources instead (see DOCKER.md)
     mem_limit: 2g
     cpus: 2.0
     mem_reservation: 512m
