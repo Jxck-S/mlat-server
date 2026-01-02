@@ -10,7 +10,8 @@ RuntimeDirectoryMode=0755
 Type=simple
 Restart=always
 RestartSec=20
-# this cuts down on load, multithreading beyond the one extra num thread is detrimental:
+# For performance tuning details, see PERFORMANCE.md
+# Thread limiting - reduces load, multithreading beyond one thread is detrimental:
 Environment=MKL_NUM_THREADS=1
 Environment=NUMEXPR_NUM_THREADS=1
 Environment=OMP_NUM_THREADS=1
