@@ -61,9 +61,10 @@ WORKDIR /opt/mlat-server
 # 31004: basestation output
 EXPOSE 31090 31003 31004
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD test -f /run/mlat-server/positions.csv || exit 1
+# Health check - ping the work directory to ensure server is running
+# Note: positions.csv is only created when position data is available
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD ps aux | grep -q '[m]lat-server' || exit 1
 
 # Default command
 CMD ["/opt/mlat-venv/bin/python3", "/opt/mlat-server/mlat-server", \

@@ -36,6 +36,7 @@ tox.ini
 # Documentation
 *.md
 !README.md
+!DOCKER.md
 
 # Build artifacts
 *.o

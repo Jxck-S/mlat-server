@@ -101,7 +101,16 @@ command: >
 
 ### Resource Limits
 
-Adjust based on your deployment size:
+Adjust based on your deployment size in `docker-compose.yml`:
+
+```yaml
+# For standalone docker-compose (v3.x)
+mem_limit: 2g
+cpus: 2.0
+mem_reservation: 512m
+```
+
+Or for Docker Swarm mode:
 
 ```yaml
 deploy:

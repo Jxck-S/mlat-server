@@ -28,16 +28,11 @@ services:
       - OMP_NUM_THREADS=1
       - PYTHONOPTIMIZE=2
     
-    # Resource limits (adjust based on your needs)
-    # These are conservative defaults; monitor and adjust accordingly
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
-        reservations:
-          cpus: '1.0'
-          memory: 512M
+    # Resource limits for standalone docker-compose
+    # Note: For Docker Swarm, use the deploy section instead
+    mem_limit: 2g
+    cpus: 2.0
+    mem_reservation: 512m
     
     # Custom command (override default if needed)
     # command: >
