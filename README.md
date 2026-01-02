@@ -63,6 +63,26 @@ to hack on the code.
 
     $ mlat-server --help
 
+## High Concurrency / Connection Limits
+
+If you expect thousands of concurrent client connections, you must increase the maximum number of open file descriptors (ulimit).
+
+### Docker
+The provided `docker-compose.yml` is already configured with raised limits:
+```yaml
+    ulimits:
+      nofile:
+        soft: 8000
+        hard: 8000
+```
+
+### Systemd / Manual
+If running via systemd, add `LimitNOFILE` to your service unit (see `systemd-service.example`):
+```ini
+[Service]
+LimitNOFILE=65536
+```
+
 ## Clients
 
 You need a bunch of receivers running mlat-client:

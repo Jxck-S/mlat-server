@@ -10,6 +10,9 @@ RuntimeDirectoryMode=0755
 Type=simple
 Restart=always
 RestartSec=20
+
+# Increase max open files (ulimit -n) to handle high concurrency
+LimitNOFILE=8000
 # Restrict numerical libraries to single-threaded mode to avoid CPU contention
 # and excessive overhead, as the server handles concurrency via asyncio.
 Environment=MKL_NUM_THREADS=1
