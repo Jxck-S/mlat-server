@@ -16,45 +16,13 @@ See commits or a diff for details.
 
 ## License
 
-It is important that you read this section before using or modifying the server!
-
-The server code is licensed under the Affero GPL v3. This license is similar
-to the GPL v3, but it has an additional requirement that you must provide
-source code to _users who access the server over a network_.
-
-So if you are planning to operate a copy of this server, you must release any
-modifications you make to the source code to your users, even if you wouldn't
-normally distribute it.
-
-If you are not willing to distribute your changes, you have three options:
-
- * Contact the copyright holder (Oliver) to discuss a separate license for
-   the server code; or
- * Don't allow anyone else to connect to your server, i.e. run only your
-   own receivers; or
- * Don't use this server as a basis for your work at all.
-
-The server will automatically provide details of the AGPL license and a link
-to the server code, to each client that connects. This is configured in
-mlat/config.py. If you make modifications, the suggested process is:
-
- * Put the modified source code somewhere public (github may be simplest).
- * Update the URL configured in mlat/config.py to point to your modified code.
-
-None of this requires that you make your server publically accessible. If you
-want to run a private server with a closed user group, that's fine. But you
-must still make the source code for your modified server available to your
-users, and they may redistribute it further if they wish.
+See the `COPYING` file for license details (AGPL v3).
 
 ## Prerequisites
 
- * Python 3.4 or later. You need the asyncio module which was introduced in 3.4.
- * Numpy and Scipy
- * python-graph-core (https://github.com/pmatiello/python-graph)
- * pykalman (https://github.com/pykalman/pykalman)
- * optionally, objgraph (https://mg.pov.lt/objgraph/) for leak checking
+ * Python 3.14.
+ * See `requirements.txt` for Python dependencies.
  * gcc
- * uvloop, ujson, Cython
 
 ## Example of how to make it run with virtualenv:
 
@@ -65,7 +33,7 @@ rm -rf $VENV
 python3 -m venv $VENV
 source $VENV/bin/activate
 pip3 install -U pip
-pip3 install numpy scipy pykalman python-graph-core uvloop ujson Cython setuptools
+pip3 install -r requirements.txt
 ```
 
 After every code update, recompile the Cython stuff:
@@ -77,10 +45,8 @@ python3 setup.py build_ext --inplace
 
 Starting mlat server:
 ```
-export MKL_NUM_THREADS=1
-export NUMEXPR_NUM_THREADS=1
-export OMP_NUM_THREADS=1
-$VENV/bin/python3 /opt/mlat-server/mlat-server
+chmod +x start.sh
+./start.sh
 ```
 (example has git directory cloned into /opt/mlat-server)
 

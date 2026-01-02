@@ -10,7 +10,8 @@ RuntimeDirectoryMode=0755
 Type=simple
 Restart=always
 RestartSec=20
-# this cuts down on load, multithreading beyond the one extra num thread is detrimental:
+# Restrict numerical libraries to single-threaded mode to avoid CPU contention
+# and excessive overhead, as the server handles concurrency via asyncio.
 Environment=MKL_NUM_THREADS=1
 Environment=NUMEXPR_NUM_THREADS=1
 Environment=OMP_NUM_THREADS=1

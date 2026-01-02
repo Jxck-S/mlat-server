@@ -1,0 +1,8 @@
+numpy
+scipy
+pykalman
+python-graph-core
+uvloop
+ujson
+Cython
+setuptools<81
