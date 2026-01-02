@@ -1,0 +1,51 @@
+# Git files
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+*.whl
+
+# Virtual environments
+venv/
+env/
+ENV/
+mlat-python-venv/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Test files
+test/
+tox.ini
+.tox
+
+# Documentation
+*.md
+!README.md
+
+# Build artifacts
+*.o
+*.c
+modes_cython/*.c
+mlat/*.c
+
+# Runtime data
+workdir/
+/run/
+
+# Other
+.DS_Store
