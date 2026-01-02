@@ -86,6 +86,12 @@ $VENV/bin/python3 /opt/mlat-server/mlat-server
 
 For an example service file see systemd-service.example
 
+## Performance
+
+For information about performance characteristics, resource usage, and optimization guidance, see [PERFORMANCE.md](PERFORMANCE.md).
+
+**Quick answer**: The server already uses highly optimized techniques (Cython for critical paths, NumPy/SciPy for numerical computing, uvloop for async I/O). A rewrite in C would require enormous effort for likely minimal gains since performance-critical code is already executing as native code.
+
 ## Developer-ware
 
 It's all poorly documented and you need to understand quite a bit of the
