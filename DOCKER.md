@@ -153,11 +153,11 @@ environment:
   - MKL_NUM_THREADS=1        # Limit Intel MKL threading
   - NUMEXPR_NUM_THREADS=1    # Limit NumExpr threading  
   - OMP_NUM_THREADS=1        # Limit OpenMP threading
-  - PYTHONOPTIMIZE=2         # Enable Python optimizations
+  - PYTHONOPTIMIZE=2         # Enable Python optimizations (removes asserts, __debug__ code)
 ```
 
 **Why these settings?**
-mlat-server uses asyncio for concurrency. Additional threading from NumPy/SciPy libraries can actually reduce performance due to context switching overhead.
+mlat-server uses asyncio for concurrency. Additional threading from NumPy/SciPy libraries can actually reduce performance due to context switching overhead. PYTHONOPTIMIZE=2 enables bytecode optimizations and removes debugging code for better performance.
 
 ### Multi-Stage Build
 
@@ -300,10 +300,23 @@ To migrate from a native installation:
    sudo systemctl stop mlat-server
    ```
 
-2. Copy data to Docker volume:
+2. Copy data to Docker volume using a temporary container:
    ```bash
+   # Create the volume
    docker volume create mlat-data
-   sudo cp -r /run/mlat-server/* /var/lib/docker/volumes/mlat-data/_data/
+   
+   # Copy data using a temporary container (more portable)
+   docker run --rm -v mlat-data:/data -v /run/mlat-server:/source alpine \
+     sh -c "cp -r /source/* /data/ 2>/dev/null || true"
+   ```
+   
+   Alternatively, if you know your Docker volume path:
+   ```bash
+   # Find the volume path
+   docker volume inspect mlat-data | grep Mountpoint
+   
+   # Copy files (adjust path as needed)
+   sudo cp -r /run/mlat-server/* $(docker volume inspect mlat-data --format '{{.Mountpoint}}')
    ```
 
 3. Start Docker container:

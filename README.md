@@ -156,10 +156,10 @@ The following are already configured in the Dockerfile:
 MKL_NUM_THREADS=1       # Limit Intel MKL threading
 NUMEXPR_NUM_THREADS=1   # Limit NumExpr threading
 OMP_NUM_THREADS=1       # Limit OpenMP threading
-PYTHONOPTIMIZE=2        # Enable Python optimizations
+PYTHONOPTIMIZE=2        # Enable Python optimizations (removes asserts, __debug__ code)
 ```
 
-These settings are **crucial** - mlat-server uses asyncio for concurrency, and additional threading from NumPy/SciPy can be detrimental to performance.
+These settings are **crucial** - mlat-server uses asyncio for concurrency, and additional threading from NumPy/SciPy can be detrimental to performance. PYTHONOPTIMIZE=2 enables bytecode optimizations and removes debugging overhead.
 
 #### Resource Allocation
 
