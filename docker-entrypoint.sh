@@ -5,6 +5,7 @@ set -e
 export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export OMP_NUM_THREADS=1
+export PYTHONOPTIMIZE=2
 
 # Defaults
 WORK_DIR=${WORK_DIR:-/run/mlat-server}
