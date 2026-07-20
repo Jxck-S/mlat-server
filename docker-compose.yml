@@ -10,6 +10,14 @@ services:
       nofile:
         soft: 8000
         hard: 8000
+    # Cap container log growth at 512MB total (4 x 128MB rotated files).
+    # Without this the default json-file driver grows unbounded; client
+    # connect/disconnect chatter reached 5GB in ~3 weeks and filled the disk.
+    logging:
+      driver: json-file
+      options:
+        max-size: "128m"
+        max-file: "4"
     ports:
       - "31090:31090" # Client input (Beast/Raw)
       - "30104:30104" # BaseStation output
